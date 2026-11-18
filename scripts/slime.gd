@@ -1,6 +1,6 @@
 extends Node2D
 
-const SPEED = 60
+@export var speed: float = 60.0
 
 var direction = 1
 var is_dead = false
@@ -23,7 +23,7 @@ func _process(delta):
 		direction = 1
 		animated_sprite.flip_h = false
 	
-	position.x += direction * SPEED * delta
+	position.x += direction * speed * delta
 
 func die_from_stomp(player):
 	if is_dead:
