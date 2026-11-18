@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dtrbka1ef726o" path="res://scenes/killzone.tscn" id="5_x8euu"]
 [ext_resource type="PackedScene" uid="uid://d2w2i5h0lhc6l" path="res://scenes/slime.tscn" id="6_l0s6b"]
 [ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/fonts/PixelOperator8.ttf" id="7_8cblx"]
-[ext_resource type="PackedScene" path="res://scenes/finish_point.tscn" id="8_finish"]
+[ext_resource type="PackedScene" path="res://scenes/flagpole.tscn" id="8_flagpole"]
 [ext_resource type="PackedScene" path="res://scenes/slime_purple.tscn" id="9_slimepurple"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ashvg"]
@@ -593,6 +593,6 @@ theme_override_font_sizes/font_size = 8
 text = "Level 2 Clear!"
 horizontal_alignment = 1
 
-[node name="FinishPoint" parent="." instance=ExtResource("8_finish")]
-position = Vector2(568, -135)
+[node name="Flagpole" parent="." instance=ExtResource("8_flagpole")]
+position = Vector2(540, -108)
 target_level = "res://scenes/level_3.tscn"

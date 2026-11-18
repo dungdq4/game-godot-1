@@ -1,0 +1,154 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5marioflagpole1"]
+
+[ext_resource type="Script" path="res://scripts/flagpole.gd" id="1_flagpole"]
+[ext_resource type="AudioStream" path="res://assets/sounds/tap.wav" id="2_tap"]
+[ext_resource type="AudioStream" path="res://assets/sounds/power_up.wav" id="3_powerup"]
+[ext_resource type="AudioStream" path="res://assets/sounds/coin.wav" id="4_coin"]
+[ext_resource type="FontFile" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_bold_font"]
+[ext_resource type="FontFile" path="res://assets/fonts/PixelOperator8.ttf" id="6_normal_font"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pole"]
+size = Vector2(14, 104)
+
+[node name="Flagpole" type="Node2D"]
+script = ExtResource("1_flagpole")
+
+[node name="PoleGraphics" type="Node2D" parent="."]
+
+[node name="Base" type="ColorRect" parent="PoleGraphics"]
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+color = Color(0.282353, 0.313726, 0.392157, 1)
+
+[node name="BaseAccent" type="ColorRect" parent="PoleGraphics"]
+offset_left = -6.0
+offset_top = -14.0
+offset_right = 6.0
+offset_bottom = -2.0
+color = Color(0.380392, 0.419608, 0.517647, 1)
+
+[node name="Pole" type="ColorRect" parent="PoleGraphics"]
+offset_left = -1.0
+offset_top = -112.0
+offset_right = 2.0
+offset_bottom = -16.0
+color = Color(0.858824, 0.886275, 0.921569, 1)
+
+[node name="TopBall" type="ColorRect" parent="PoleGraphics"]
+offset_left = -3.0
+offset_top = -117.0
+offset_right = 4.0
+offset_bottom = -111.0
+color = Color(0.988235, 0.776471, 0.156863, 1)
+
+[node name="Flag" type="Polygon2D" parent="."]
+position = Vector2(0, -110)
+color = Color(0.890196, 0.231373, 0.231373, 1)
+polygon = PackedVector2Array(0, 0, -16, 6, 0, 12)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_pole")
+
+[node name="Castle" type="Node2D" parent="."]
+position = Vector2(40, 0)
+
+[node name="Wall" type="ColorRect" parent="Castle"]
+offset_top = -32.0
+offset_right = 36.0
+color = Color(0.427451, 0.462745, 0.54902, 1)
+
+[node name="RoofLeft" type="ColorRect" parent="Castle"]
+offset_top = -38.0
+offset_right = 8.0
+offset_bottom = -32.0
+color = Color(0.345098, 0.376471, 0.458824, 1)
+
+[node name="RoofMid" type="ColorRect" parent="Castle"]
+offset_left = 14.0
+offset_top = -38.0
+offset_right = 22.0
+offset_bottom = -32.0
+color = Color(0.345098, 0.376471, 0.458824, 1)
+
+[node name="RoofRight" type="ColorRect" parent="Castle"]
+offset_left = 28.0
+offset_top = -38.0
+offset_right = 36.0
+offset_bottom = -32.0
+color = Color(0.345098, 0.376471, 0.458824, 1)
+
+[node name="Door" type="ColorRect" parent="Castle"]
+offset_left = 12.0
+offset_top = -18.0
+offset_right = 24.0
+color = Color(0.109804, 0.121569, 0.156863, 1)
+
+[node name="CastleFlag" type="Polygon2D" parent="Castle"]
+position = Vector2(18, -38)
+color = Color(0.247059, 0.764706, 0.501961, 1)
+polygon = PackedVector2Array(0, 0, 8, -4, 0, -8)
+
+[node name="TapSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_tap")
+bus = &"SFX"
+
+[node name="VictorySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_powerup")
+bus = &"SFX"
+
+[node name="CoinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_coin")
+bus = &"SFX"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ClearUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ClearUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ClearUI/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="ClearLabel" type="Label" parent="CanvasLayer/ClearUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.988235, 0.819608, 0.188235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_bold_font")
+theme_override_font_sizes/font_size = 20
+text = "COURSE CLEAR!"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/ClearUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("6_normal_font")
+theme_override_font_sizes/font_size = 12
+text = "+5000 PTS"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
