@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ci80fpk6n18qu"]
+
+[ext_resource type="Script" path="res://scripts/finish_point.gd" id="1_finish"]
+[ext_resource type="Texture2D" uid="uid://gx1xihdbejvu" path="res://assets/sprites/fruit.png" id="2_fruit"]
+[ext_resource type="AudioStream" uid="uid://chhyiookx3ilk" path="res://assets/sounds/power_up.wav" id="3_powerup"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_finish"]
+radius = 10.0
+
+[node name="FinishPoint" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_finish")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fruit")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_finish")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_powerup")
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
